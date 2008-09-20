@@ -1,0 +1,6 @@
+<ul title="iCraig" selected="true">
+   <li style="text-align: center;">Select Sub-Location</li>
+	<% SubLocation.find( :all ).each do | location | %>
+	<li><%= link_to location.name, :action => 'select_category', :id => location.id %></li>
+	<% end %>
+</ul>

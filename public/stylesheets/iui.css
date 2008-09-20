@@ -30,7 +30,7 @@ body > *[selected="true"] {
 
 a[selected], a:active {
     background-color: #194fdb !important;
-    background-image: url(listArrowSel.png), url(selection.png) !important;
+    background-image: url(../images/listArrowSel.png), url(../images/selection.png) !important;
     background-repeat: no-repeat, repeat-x;
     background-position: right center, left top;
     color: #FFFFFF !important;
@@ -50,7 +50,7 @@ body > .toolbar {
     border-top: 1px solid #6d84a2;
     padding: 10px;
     height: 45px;
-    background: url(toolbar.png) #6d84a2 repeat-x;
+    background: url(../images/toolbar.png) #6d84a2 repeat-x;
 }
 
 .toolbar > h1 {
@@ -94,11 +94,11 @@ body[orient="landscape"] > .toolbar > h1 {
     text-decoration: none;
     white-space: nowrap;
     background: none;
-    -webkit-border-image: url(toolButton.png) 0 5 0 5;
+    -webkit-border-image: url(../images/toolButton.png) 0 5 0 5;
 }
 
 .blueButton {
-    -webkit-border-image: url(blueButton.png) 0 5 0 5;
+    -webkit-border-image: url(../images/blueButton.png) 0 5 0 5;
     border-width: 0 5px;
 }
 
@@ -114,7 +114,7 @@ body[orient="landscape"] > .toolbar > h1 {
     padding: 0;
     max-width: 55px;
     border-width: 0 8px 0 14px;
-    -webkit-border-image: url(backButton.png) 0 8 0 14;
+    -webkit-border-image: url(../images/backButton.png) 0 8 0 14;
 }
 
 .whiteButton,
@@ -130,12 +130,12 @@ body[orient="landscape"] > .toolbar > h1 {
 }
 
 .whiteButton {
-    -webkit-border-image: url(whiteButton.png) 0 12 0 12;
+    -webkit-border-image: url(../images/whiteButton.png) 0 12 0 12;
     text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
 }
 
 .grayButton {
-    -webkit-border-image: url(grayButton.png) 0 12 0 12;
+    -webkit-border-image: url(../images/grayButton.png) 0 12 0 12;
     color: #FFFFFF;
 }
 
@@ -158,7 +158,7 @@ body > ul > li.group {
     border-top: 1px solid #7d7d7d;
     border-bottom: 1px solid #999999;
     padding: 1px 10px;
-    background: url(listGroup.png) repeat-x;
+    background: url(../images/listGroup.png) repeat-x;
     font-size: 17px;
     font-weight: bold;
     text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
@@ -176,7 +176,7 @@ body > ul > li > a {
     padding: 8px 32px 8px 10px;
     text-decoration: none;
     color: inherit;
-    background: url(listArrow.png) no-repeat right center;
+    background: url(../images/listArrow.png) no-repeat right center;
 }
 
 a[target="_replace"] {
@@ -210,7 +210,7 @@ body > .dialog {
     border: none;
     border-top: 1px solid #6d84a2;
     padding: 10px 6px;
-    background: url(toolbar.png) #7388a5 repeat-x;
+    background: url(../images/toolbar.png) #7388a5 repeat-x;
 }
 
 .dialog > fieldset > h1 {
@@ -300,7 +300,7 @@ fieldset > .row:last-child {
 .toggle {
     border: 1px solid #888888;
     -webkit-border-radius: 6px;
-    background: #FFFFFF url(toggle.png) repeat-x;
+    background: #FFFFFF url(../images/toggle.png) repeat-x;
     font-size: 19px;
     font-weight: bold;
     line-height: 30px;
@@ -308,7 +308,7 @@ fieldset > .row:last-child {
 
 .toggle[toggled="true"] {
     border: 1px solid #143fae;
-    background: #194fdb url(toggleOn.png) repeat-x;
+    background: #194fdb url(../images/toggleOn.png) repeat-x;
 }
 
 .toggleOn {
@@ -347,7 +347,7 @@ fieldset > .row:last-child {
     height: 28px;    
     border: 1px solid #888888;
     -webkit-border-radius: 6px;
-    background: #ffffff url(thumb.png) repeat-x;
+    background: #ffffff url(../images/thumb.png) repeat-x;
 }
 
 .toggle[toggled="true"] > .thumb {
@@ -367,6 +367,6 @@ fieldset > .row:last-child {
 
 #preloader {
     display: none;
-    background-image: url(loading.gif), url(selection.png),
-        url(blueButton.png), url(listArrowSel.png), url(listGroup.png);
+    background-image: url(../images/loading.gif), url(../images/selection.png),
+        url(../images/blueButton.png), url(../images/listArrowSel.png), url(../images/listGroup.png);
 }

@@ -1,0 +1,5 @@
+<ul title="Select Location" selected="true">
+	<% Location.find( :all ).each do | location | %>
+	<li><%= link_to location.name, :action => 'select_sub_location', :id => location.id %></li>
+	<% end %>
+</ul>
