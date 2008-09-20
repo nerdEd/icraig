@@ -1,30 +1,3 @@
-<ul selected="true">
-</ul>
-
 <div class="panel" title="iCraig" selected="true">
-	<div class="dialog">
-    	<h2 style="text-align: center;">Search</h2>
-    	<p>
-			<label>Location:</label>
-			<select>
-				<% Location.find( :all ).each do | location | %>
-				<option value="<%= location.code %>">
-					<%= location.name %>
-				</option>
-				<% end %>
-			</select>
-		</p>
-		<p>
-			<label>Sub-Location:</label>
-		</p>
-		<p>
-			<label>Category:</label>
-		</p>
-		<p>
-			<label>Sub-Category:</label>
-		</p>
-		<p>
-			<input type="text" value="Search" style="text-align: left;"/>
-		</p>
-	</div>
+	<a class="whiteButton" href="#">New Search</a>
 </div>
