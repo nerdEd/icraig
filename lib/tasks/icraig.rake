@@ -1,5 +1,6 @@
+require 'lib/scraper/scraper.rb'
+
 namespace :icraig do
-  
   task :scrape => [ :scrape_locations, :scrape_categories ]
   
   task :scrape_locations => :scrape_sub_locations do

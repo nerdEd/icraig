@@ -1,5 +1,4 @@
 <ul title="iCraig" selected="true">
-   <li style="text-align: center;">Select Sub-Location</li>
 	<% Category.find( :all ).each do | category | %>
 	<li><%= link_to category.name, :action => 'select_sub_category', :id => category.id %></li>
 	<% end %>
