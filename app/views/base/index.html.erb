@@ -3,6 +3,13 @@
     	<h2 style="text-align: center;">Search</h2>
     	<p>
 			<label>Location:</label>
+			<select>
+				<% Location.find( :all ).each do | location | %>
+				<option value="<%= location.code %>">
+					<%= location.name %>
+				</option>
+				<% end %>
+			</select>
 		</p>
 		<p>
 			<label>Sub-Location:</label>
