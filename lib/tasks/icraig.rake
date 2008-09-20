@@ -11,10 +11,17 @@ namespace :icraig do
       href = anchor.attributes[ 'href' ]
       anchor_contents = anchor.inner_html
       if( href.include?( 'http://geo.craigslist.org' ) and !anchor_contents.include?( 'more' ) ) then      
-        puts anchor_contents
+        location = Location.new
+        location.name = anchor_contents
+        location.save
+        puts location
         sub_loc_doc = Hpricot( open( href ) )
         ( sub_loc_doc/"#list/a" ).each do | sub_anchor |
-          puts "--" + sub_anchor.inner_html.delete( "<b>" ).delete( "</b>" )
+          sub_loc = SubLocation.new
+          sub_loc.name = sub_anchor.inner_html.delete( "<b>" ).delete( "</b>" )
+          sub_loc.location_id = location.id
+          sub_loc.save   
+          puts sub_loc
         end
       end
     end
