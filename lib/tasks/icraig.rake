@@ -16,7 +16,9 @@ namespace :icraig do
         puts location
         sub_loc_doc = Hpricot( open( href ) )
         ( sub_loc_doc/"#list/a" ).each do | sub_anchor |
+          # TODO: add code to strip out '<b>' and '</b>' from inner html
           sub_loc = SubLocation.new( sub_anchor.inner_html, '', location.id )
+          sub_loc.url = sub_anchor.attributes[ 'href' ]
           sub_loc.save   
           puts sub_loc
         end
