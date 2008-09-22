@@ -1,5 +1,5 @@
 <ul title="iCraig" selected="true">
-	<% Category.find( :all ).each do | category | %>
+	<% @categories.each do | category | %>
 	<li><%= link_to category.name, :action => 'select_sub_category', :id => category.id %></li>
 	<% end %>
 </ul>
