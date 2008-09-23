@@ -24,29 +24,29 @@ class BaseController < ApplicationController
   
   def select_category
     if( session[ :category ] != nil ) then
-      redirect_to :action => "select_sub_location"
+      redirect_to :action => "select_sub_category"
     end
     @page_title = "Select Category"
     sub_location = SubLocation.find( params[ :id ] )
     session[ :sub_location ] = SubLocation.find( sub_location.id )
-    # TODO: this should pull back location specific categores, not all
+    # TODO: Categories retrieved in select_category action should be location specific
     @categories = Category.find :all
   end
   
   def select_sub_category
-    # TODO: find out if it's possible to have no sub-category
-    #       if so, add a redirect to 'search' if that's the case
+    # TODO: Redirect to search action from select_sub_category action if there are no sub-categories
     if( session[ :sub_category ] != nil ) then
-      redirect_to :action => "select_sub_location"
+      redirect_to :action => "search"
     end
     @page_title = "Select Sub-Category"
     category = Category.find( params[:id] )
     @sub_categories = Category.find( category.id ).sub_categories
   end
   
+  # TODO: Rename search action to build_search
   def search  
     @page_title = "Search"
-    sub_category = SubCategory.find( params[ :id ] )
+    session[ :sub_category ] = session [ :sub_category ] || SubCategory.find( params[ :id ] )
   end
   
 end
