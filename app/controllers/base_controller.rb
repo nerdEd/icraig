@@ -13,12 +13,12 @@ class BaseController < ApplicationController
   end
   
   def select_sub_location
+    location = Location.find( params[:id] )
     @sub_locations = Location.find( location.id ).sub_locations
     if( session[ :sub_location ] != nil or @sub_locations.empty? ) then
       redirect_to :action => "select_category"
     end    
     @page_title = "Select Sub-Location"
-    location = Location.find( params[:id] )
     session[ :location ] = @location
   end
   
