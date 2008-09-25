@@ -1,3 +1,3 @@
-class SubLocation < ActiveRecord::Base
-  belongs_to :location
+class SubLocation < Location
+  belongs_to :primary_location
 end

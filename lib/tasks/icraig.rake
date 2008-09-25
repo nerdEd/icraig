@@ -11,7 +11,7 @@ namespace :icraig do
       href = anchor.attributes[ 'href' ]
       anchor_contents = anchor.inner_html
       if( href.include?( 'http://geo.craigslist.org' ) and !anchor_contents.include?( 'more' ) ) then      
-        location = Location.create( :name => anchor_contents, :url => href )
+        location = PrimaryLocation.create( :name => anchor_contents, :url => href )
         puts location
         sub_loc_doc = Hpricot( open( href ) )
         ( sub_loc_doc/"#list/a" ).each do | sub_anchor |          

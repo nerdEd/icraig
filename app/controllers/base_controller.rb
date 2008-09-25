@@ -2,6 +2,9 @@ class BaseController < ApplicationController
   
   def index
     @page_title = "iCraig Home"
+    session[ :location ] = nil
+    session[ :sub_location ] = nil
+    session[ :category ] = nil
   end
   
   def select_location
@@ -12,7 +15,7 @@ class BaseController < ApplicationController
       redirect_to :action => "select_sub_location"
     end
     
-    @locations = Location.find :all
+    @locations = PrimaryLocation.find :all
   end
   
   def select_sub_location
@@ -20,7 +23,7 @@ class BaseController < ApplicationController
     
     # Put location into session
     if( session[ :location ] == nil ) then
-      location = Location.find( params[:id] )
+      location = PrimaryLocation.find( params[:id] )
       session[ :location ] = location
     end
     
