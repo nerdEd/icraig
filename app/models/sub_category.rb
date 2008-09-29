@@ -1,3 +1,3 @@
-class SubCategory < ActiveRecord::Base
-  belongs_to :category
+class SubCategory < Category
+  belongs_to :primary_category
 end
