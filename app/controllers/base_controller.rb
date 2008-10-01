@@ -47,12 +47,11 @@ class BaseController < ApplicationController
     
     # Determine if we're coming from 'select_location' or 'select_sub_location'
     if( params[ :id ] == nil ) then
-      # Populate the list of categories based on the location
-      @categories = PrimaryCategory.find :all
+      @categories = session[ :location ].primary_categories
     else
       sub_location = SubLocation.find( params[ :id ] )
       session[ :sub_location ] = SubLocation.find( sub_location.id )
-      @categories = PrimaryCategory.find :all
+      @categories = sub_location.primary_categories
     end    
   end
   
