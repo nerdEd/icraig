@@ -25,13 +25,19 @@ namespace :icraig do
 
   desc 'scrape all Categories and Sub-Categories from Craigslist'
   task :scrape_categories => :environment do 
-    # TODO: implementation
-    # NOTE: Categories/Sub-Categories vary based on location...
-    #       This should be taken into consideration when implemented.
+    
+    # Load all categories/sub-categories for sub-locations
     sub_locations = SubLocation.find :all
-    sub_locations.each do | location |
-      doc = Hpricot( open( location.url ) )      
+    location = SubLocation.find 2
+    #sub_locations.each do | location |
+      doc = Hpricot( open( location.url ) )  
+      ( doc/"div.ban/a" ).each do | category_anchor |
+        puts category_anchor
+      #end
     end
+    
+    # Load all categories/sub-categories for locations (without sub-locations)
+    
   end
   
 end
