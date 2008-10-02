@@ -31,19 +31,44 @@ namespace :icraig do
     sub_locations.each do | sub_location |
       doc = Hpricot( open( sub_location.url ) )  
       ( doc/"div.ban/a" ).each do | category_anchor |
+        
         name = category_anchor.inner_html
         code = category_anchor.attributes[ 'href' ]
-        if( PrimaryCategory.find( :all, [ "code = ?", code ] ).empty? ) then
+        
+        # Only create a new category if this one doesn't already exist
+        existing_categories = PrimaryCategory.find( :all, [ "code = ?", code ] )
+        if( existing_categories.empty? ) then
           category = PrimaryCategory.new( :name => name, :code => code )
           category.save
-          sub_location.primary_categories << category
-          puts name
+        else
+          category = existing_categories.first
+        end
+        
+        # Add the current category to the current sub-location        
+        sub_location.primary_categories << category
+        
+        # Fetch all sub-categories for this category
+        ( doc/"table.w2[@summary='#{category.name}']/a").each do | sub_cat_anchor |
+                    
+          sub_name = sub_cat_anchor.inner_html
+          sub_code = sub_cat_anchor.attributes[ 'href' ]
+          
+          #Only create a new sub-category if this one doesn't already exist
+          existing_sub_categories = SubCategory.find( :all, [ "code = ?", code ] )
+          if( existing_sub_categories.empty? ) then
+            sub_category = SubCategory.new( :name => name, :code => code )
+            sub_category.save
+          else
+            sub_category = existing_sub_categories.first
+          end
+          
+          # Add the current sub-category to the current category
+          category.sub_categories << sub_category
         end
       end
     end
     
     # TODO: Load all categories for locations (without sub-locations)
-    # TODO: Load all sub-categories for categories    
   end
   
 end
