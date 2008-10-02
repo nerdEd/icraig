@@ -27,13 +27,19 @@ namespace :icraig do
   task :scrape_categories => :environment do 
     
     # Load all categories/sub-categories for sub-locations
-    sub_locations = SubLocation.find :all
-    location = SubLocation.find 2
-    #sub_locations.each do | location |
-      doc = Hpricot( open( location.url ) )  
+    sub_locations = SubLocation.find :all    
+    sub_locations.each do | sub_location |
+      doc = Hpricot( open( sub_location.url ) )  
       ( doc/"div.ban/a" ).each do | category_anchor |
-        puts category_anchor
-      #end
+        name = category_anchor.inner_html
+        code = category_anchor.attributes[ 'href' ]
+        if( PrimaryCategory.find( :all, [ "code = ?", code ] ).empty? ) then
+          category = PrimaryCategory.new( :name => name, :code => code )
+          category.save
+          sub_location.primary_categories << category
+          puts name
+        end
+      end
     end
     
     # Load all categories/sub-categories for locations (without sub-locations)
