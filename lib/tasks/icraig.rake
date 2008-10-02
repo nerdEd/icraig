@@ -42,8 +42,8 @@ namespace :icraig do
       end
     end
     
-    # Load all categories/sub-categories for locations (without sub-locations)
-    
+    # TODO: Load all categories for locations (without sub-locations)
+    # TODO: Load all sub-categories for categories    
   end
   
 end
