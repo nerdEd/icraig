@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081002030714) do
+ActiveRecord::Schema.define(:version => 20081003013507) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20081002030714) do
     t.string   "url"
     t.string   "type"
     t.integer  "primary_location_id"
+    t.boolean  "is_childless",        :default => true
   end
 
   create_table "locations_primary_categories", :id => false, :force => true do |t|

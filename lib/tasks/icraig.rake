@@ -12,12 +12,14 @@ namespace :icraig do
       anchor_contents = anchor.inner_html
       if( href.include?( 'http://geo.craigslist.org' ) and !anchor_contents.include?( 'more' ) ) then      
         location = PrimaryLocation.create( :name => anchor_contents, :url => href )
-        puts location
+        puts location.name
         sub_loc_doc = Hpricot( open( href ) )
         ( sub_loc_doc/"#list/a" ).each do | sub_anchor |          
+          location.is_childless = false
+          location.save
           name = sub_anchor.inner_html.sub( /(<b>)/i, '' ).sub( /(<\/b>)/i, '' )
           sub_location = location.sub_locations.create( :name => name, :url => sub_anchor.attributes[ 'href' ] )
-          puts sub_location
+          puts " -- " + sub_location.name
         end
       end
     end
@@ -26,11 +28,14 @@ namespace :icraig do
   desc 'scrape all Categories and Sub-Categories from Craigslist, and load them into the database'
   task :scrape_categories => :environment do 
     
+    # Pull all sub-locations and those primary locations with no sub-locations
+    locations = SubLocation.find( :all )
+    locations << PrimaryLocation.find( :all, :conditions => "is_childless = 't'" )
+    
     # Load all categories/sub-categories for sub-locations
-    sub_locations = SubLocation.find :all    
-    sub_locations.each do | sub_location |
-      puts sub_location.url
-      doc = Hpricot( open( sub_location.url ) )  
+    locations.each do | location |
+      puts location.url
+      doc = Hpricot( open( location.url ) )
       ( doc/"table[@summary='main'] div.ban a[@href != '/forums/']" ).each do | category_anchor |
         name = category_anchor.inner_html
         code = category_anchor.attributes[ 'href' ]
@@ -45,7 +50,7 @@ namespace :icraig do
         end
         
         # Add the current category to the current sub-location        
-        sub_location.primary_categories << category
+        location.primary_categories << category
         puts name
         
         # Fetch all sub-categories for this category
@@ -54,10 +59,10 @@ namespace :icraig do
           sub_name = sub_cat_anchor.inner_html
           sub_code = sub_cat_anchor.attributes[ 'href' ]
           
-          #Only create a new sub-category if this one doesn't already exist
+          # Only create a new sub-category if this one doesn't already exist
           existing_sub_categories = SubCategory.find( :all, :conditions => [ "code = ?", code ] )
           if( existing_sub_categories.empty? ) then
-            sub_category = SubCategory.new( :name => name, :code => code )
+            sub_category = SubCategory.new( :name => sub_name, :code => sub_code )
             sub_category.save
           else
             sub_category = existing_sub_categories.first

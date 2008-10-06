@@ -57,6 +57,7 @@ class BaseController < ApplicationController
   
   def select_sub_category
     @page_title = "Select Sub-Category"
+    
     # TODO: Redirect to search action from select_sub_category action if there are no sub-categories
     if( session[ :sub_category ] != nil ) then
       redirect_to :action => "search"
