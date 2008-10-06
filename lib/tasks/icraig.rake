@@ -32,9 +32,18 @@ namespace :icraig do
     locations = SubLocation.find( :all )
     locations << PrimaryLocation.find( :all, :conditions => "is_childless = 't'" )
     
+    # Set up some values to determine percent completion during scraping
+    total_locations = locations.size
+    current_iteration = 0
+    
     # Load all categories/sub-categories for sub-locations
     locations.each do | location |
-      puts location.url
+      
+      # Print status
+      current_iteration++
+      percent_complete = ( current_iteration/total_locations ) * 100
+      puts 'Currently Scraping: ' + location.name + ' -- ' + percent_complete + '% done'
+      
       doc = Hpricot( open( location.url ) )
       ( doc/"table[@summary='main'] div.ban a[@href != '/forums/']" ).each do | category_anchor |
         name = category_anchor.inner_html
