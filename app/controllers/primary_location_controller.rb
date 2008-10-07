@@ -5,7 +5,7 @@ class PrimaryLocationController < ApplicationController
     
     # Redirect to next step if the location is set in the session
     if( session[ :location ] != nil ) then
-      redirect_to :action => "select_sub_location"
+      redirect_to :controller => 'sub_location', :action => 'index'
     end
     
     @locations = PrimaryLocation.find :all
@@ -14,6 +14,6 @@ class PrimaryLocationController < ApplicationController
   def select    
     location = PrimaryLocation.find( params[:id] )
     session[ :location ] = location   
-    redirect_to :controller => 'sub_location', :action => "index" 
+    redirect_to :controller => 'sub_location', :action => 'index' 
   end
 end
