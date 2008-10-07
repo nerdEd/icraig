@@ -42,7 +42,7 @@ namespace :icraig do
       # Print status
       current_iteration++
       percent_complete = ( current_iteration/total_locations ) * 100
-      puts 'Currently Scraping: ' + location.name + ' -- ' + percent_complete + '% done'
+      puts 'Currently Scraping: ' + location.name + ' -- ' + percent_complete.to_s + '% done'
       
       doc = Hpricot( open( location.url ) )
       ( doc/"table[@summary='main'] div.ban a[@href != '/forums/']" ).each do | category_anchor |
