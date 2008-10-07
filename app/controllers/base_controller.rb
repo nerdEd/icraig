@@ -21,13 +21,7 @@ class BaseController < ApplicationController
   end
   
   def select_sub_location
-    @page_title = "Select Sub-Location"    
-    
-    # Put location into session
-    if( session[ :location ] == nil ) then
-      location = PrimaryLocation.find( params[:id] )
-      session[ :location ] = location
-    end
+    @page_title = "Select Sub-Location"
     
     @sub_locations = session[ :location ].sub_locations
     

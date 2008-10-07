@@ -1,0 +1,2 @@
+module PrimaryCategoryHelper
+end

@@ -1,0 +1,2 @@
+module PrimaryLocationHelper
+end

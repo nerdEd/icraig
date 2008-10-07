@@ -1,0 +1,5 @@
+<ul title="iCraig" selected="true">
+	<% @sub_locations.each do | sub_location | %>
+	<li><%= link_to sub_location.name, :action => 'select', :id => sub_location.id %></li>
+	<% end %>
+</ul>
