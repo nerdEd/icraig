@@ -1,0 +1,9 @@
+<!-- <form class="panel" action="search" selected="true"> -->
+<% form_tag( {:action => 'search'}, { :selected => 'true', :class => 'panel' } ) do %>	
+	<fieldset>
+		<div class="row">
+			<%= text_field :search, :terms %>
+		</div>
+	</fieldset>
+	<%= submit_tag 'Search'%>
+<% end -%>
