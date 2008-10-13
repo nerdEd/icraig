@@ -37,7 +37,7 @@ a[selected], a:active {
 }
 
 a[selected="progress"] {
-    background-image: url(loading.gif), url(selection.png) !important;
+    background-image: url(../images/loading.gif), url(../images/selection.png) !important;
 }
 
 /************************************************************************************************/
@@ -246,7 +246,7 @@ body > .panel {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 10px;
-    background: #c8c8c8 url(pinstripes.png);
+    background: #c8c8c8 url(../images/pinstripes.png);
 }
 
 .panel > fieldset {
