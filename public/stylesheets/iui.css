@@ -54,10 +54,8 @@ body > .toolbar {
 }
 
 .toolbar > h1 {
-    position: absolute;
     overflow: hidden;
-    left: 50%;
-    margin: 1px 0 0 -75px;
+    margin: 0 auto;
     height: 45px;
     font-size: 20px;
     width: 200px;
