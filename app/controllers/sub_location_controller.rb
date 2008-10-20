@@ -6,7 +6,7 @@ class SubLocationController < ApplicationController
     @sub_locations = session[ :location ].sub_locations
     
     # Redirect to next step if sub location is already OR if there are no sub-locations for this location
-    if( @sub_locations.empty? || session[ :sub_location ] != nil ) then
+    if( @sub_locations.empty? ) then
       redirect_to :controller => 'primary_category', :action => 'index'
     end
   end

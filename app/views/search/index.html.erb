@@ -3,6 +3,13 @@
 		<div class="row">
 			<%= text_field :search, :terms %>
 		</div>
+		<div class="centered_row">
+			<%= check_box :search, :only_search_titles %>
+			<label>Only Search Titles</label>
+
+			<%= check_box :search, :has_image %>
+			<label>Has Image</label>
+		</div>
 	</fieldset>
 	<%= submit_tag 'Search'%>
 <% end -%>
