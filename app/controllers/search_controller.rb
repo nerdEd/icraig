@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
 
   def index
+    @page_title='Enter Search'
   end
   
   def search

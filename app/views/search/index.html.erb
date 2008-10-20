@@ -1,15 +1,16 @@
 <% form_tag( {:action => 'search'}, { :selected => 'true', :class => 'panel' } ) do %>	
 	<fieldset>
-		<div class="row">
+		<p style="text-align:center;">
 			<%= text_field :search, :terms %>
-		</div>
-		<div class="centered_row">
+		<p/>
+		
+		<p style="text-align:center;">
 			<%= check_box :search, :only_search_titles %>
 			<label>Only Search Titles</label>
-
+		
 			<%= check_box :search, :has_image %>
 			<label>Has Image</label>
-		</div>
+		</p>
 	</fieldset>
 	<%= submit_tag 'Search'%>
 <% end -%>
