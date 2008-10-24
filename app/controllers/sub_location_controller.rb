@@ -3,19 +3,25 @@ class SubLocationController < ApplicationController
   def index
     @page_title = "Select Sub-Location"
     
-    @sub_locations = session[ :location ].sub_locations
-    
-    # Redirect to next step if sub location is already OR if there are no sub-locations for this location
-    if( @sub_locations.empty? ) then
-      redirect_to :controller => 'primary_category', :action => 'index'
+    if session[ :location ] != nil
+      @sub_locations = session[ :location ].sub_locations
+     
+      if( @sub_locations.empty? ) then
+        redirect_to :controller => 'primary_category', :action => 'index'
+      end
+    else
+      redirect_to :controller => 'primary_location', :action => 'index'
     end
   end
   
   def select
-    puts params[:id]
-    sub_location = SubLocation.find( params[ :id ] )
-    session[ :sub_location ] = SubLocation.find( sub_location.id )
-    redirect_to :controller => 'primary_category', :action => 'index'    
+    if params[ :sub_location_id ] != nil
+      sub_location = SubLocation.find( params[ :sub_location_id ] )
+      session[ :sub_location ] = SubLocation.find( sub_location.id )
+      redirect_to :controller => 'primary_category', :action => 'index'    
+    else
+      redirect_to :action => 'index'
+    end
   end
   
 end

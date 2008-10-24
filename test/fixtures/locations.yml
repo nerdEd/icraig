@@ -14,7 +14,6 @@ CategorylessPrimaryLocation:
   id: 3
   name: maine
   type: PrimaryLocation
-  is_childless: t
   
 NormalSubLocation:
   id: 4

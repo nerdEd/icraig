@@ -7,8 +7,12 @@ class PrimaryLocationController < ApplicationController
   end
   
   def select    
-    location = PrimaryLocation.find( params[:id] )
-    session[ :location ] = location   
-    redirect_to :controller => 'sub_location', :action => 'index' 
+    if params[ :location_id ] != nil
+      location = PrimaryLocation.find( params[:location_id] )
+      session[ :location ] = location   
+      redirect_to :controller => 'sub_location', :action => 'index' 
+    else
+      redirect_to :action => 'index'
+    end
   end
 end
