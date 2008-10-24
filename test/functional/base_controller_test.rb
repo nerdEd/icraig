@@ -12,9 +12,4 @@ class BaseControllerTest < ActionController::TestCase
     get :index 
     assert_response :success     
   end
-  
-  # Replace this with your real tests.
-  def test_truth
-    assert true
-  end
 end
