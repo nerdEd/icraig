@@ -1,5 +1,5 @@
 <ul title="iCraig" selected="true">
 	<% @categories.each do | category | %>
-	<li><%= link_to category.name, :action => 'select', :id => category.id %></li>
+	<li><%= link_to category.name, :action => 'select', :primary_category_id => category.id %></li>
 	<% end %>
 </ul>

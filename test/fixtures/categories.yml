@@ -1,9 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  name: MyString
-  code: MyString
-
-two:
-  name: MyString
-  code: MyString
+NormalPrimaryCategory:
+  id: 1
+  name: Housing
+  type: PrimaryCategory
+  
+NormalSubCategory:
+  id: 2
+  name: Apartments
+  type: SubCategory
+    
