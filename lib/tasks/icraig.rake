@@ -28,9 +28,7 @@ namespace :icraig do
   desc 'scrape all Categories and Sub-Categories from Craigslist, and load them into the database, also... holy shit this task is too big.'
   task :scrape_categories => :environment do 
     
-    # Pull all sub-locations and those primary locations with no sub-locations
-    locations = SubLocation.find( :all )
-    locations << PrimaryLocation.find( :all, :conditions => "is_childless = 't'" )
+    locations = Location.locations_with_categories
     
     # Set up some values to determine percent completion during scraping
     total_locations = locations.size

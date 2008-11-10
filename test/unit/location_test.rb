@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class LocationTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  fixtures :locations
+  
+  def test_find_childless_locations
+    locations = Location.find_childless_locations
+    assert_equal( locations.size, 3 )
   end
 end
