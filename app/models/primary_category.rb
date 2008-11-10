@@ -6,7 +6,8 @@ class PrimaryCategory < Category
     existing_categories = PrimaryCategory.find( :all, :conditions => [ "code = ?", code ] )
     if( existing_categories.empty? ) then
       category = PrimaryCategory.new( :name => name, :code => code )
-      category.save          
+      category.save  
+      return category        
     else
       category = existing_categories.first
     end
