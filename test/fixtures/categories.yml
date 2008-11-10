@@ -2,9 +2,11 @@ NormalPrimaryCategory:
   id: 1
   name: Housing
   type: PrimaryCategory
+  code: house
   
 NormalSubCategory:
   id: 2
   name: Apartments
   type: SubCategory
+  code: apartment
     

@@ -37,17 +37,11 @@ namespace :icraig do
       
       doc = Hpricot( open( location.url ) )
       ( doc/"table[@summary='main'] div.ban a[@href != '/forums/']" ).each do | category_anchor |
+
+        # create a new category if the one we're parsing doesn't already exist
         name = category_anchor.inner_html
-        code = category_anchor.attributes[ 'href' ]
-        
-        # Only create a new category if this one doesn't already exist
-        existing_categories = PrimaryCategory.find( :all, :conditions => [ "code = ?", code ] )
-        if( existing_categories.empty? ) then
-          category = PrimaryCategory.new( :name => name, :code => code )
-          category.save          
-        else
-          category = existing_categories.first
-        end
+        code = category_anchor.attributes[ 'href' ]      
+        category = PrimaryCategory.create_or_retrieve( name, code )
         
         # Add the current category to the current sub-location        
         location.primary_categories << category
