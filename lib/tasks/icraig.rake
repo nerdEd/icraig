@@ -25,7 +25,7 @@ namespace :icraig do
     end
   end
 
-  desc 'scrape all Categories and Sub-Categories from Craigslist, and load them into the database'
+  desc 'scrape all Categories and Sub-Categories from Craigslist, and load them into the database, also... holy shit this task is too big.'
   task :scrape_categories => :environment do 
     
     # Pull all sub-locations and those primary locations with no sub-locations
