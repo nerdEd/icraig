@@ -25,40 +25,26 @@ namespace :icraig do
     end
   end
 
-  desc 'scrape all Categories and Sub-Categories from Craigslist, and load them into the database, also... holy shit this task is too big.'
+  desc 'scrape all Categories and Sub-Categories from Craigslist, and load them into the database'
   task :scrape_categories => :environment do 
     
-    locations = Location.find_childless_locations
-    
-    # Load all categories/sub-categories for sub-locations
-    locations.each do | location |
-          
-      puts 'Currently Scraping: ' + location.name
-      
+    locations = Location.find( :all, :conditions => "is_childless = 't'" )
+    locations.each do | location |          
+      puts 'Currently Scraping: ' + location.name      
       doc = Hpricot( open( location.url ) )
       ( doc/"table[@summary='main'] div.ban a[@href != '/forums/']" ).each do | category_anchor |
-
-        # Process the current category
-        name = category_anchor.inner_html
-        code = category_anchor.attributes[ 'href' ]      
-        category = PrimaryCategory.create_or_retrieve( name, code )     
+        category = PrimaryCategory.create_or_retrieve( category_anchor.inner_html, category_anchor.attributes[ 'href' ] )     
         location.primary_categories << category
-        puts name
+        puts category
         
-        # Fetch all sub-categories for this category
+        # Process sub-categories
         ( doc/"table.w2[@summary='#{category.name}'] a").each do | sub_cat_anchor |
-                    
-          # Process the current sub category
-          sub_name = sub_cat_anchor.inner_html
-          sub_code = sub_cat_anchor.attributes[ 'href' ]
-          sub_category = SubCategory.create_or_retrieve( sub_name, sub_code )
+          sub_category = SubCategory.create_or_retrieve( sub_cat_anchor.inner_html, sub_cat_anchor.attributes[ 'href' ] )
           category.sub_categories << sub_category
-          puts " -- " + sub_name
-        end
-      end
-    end
-    
-    # TODO: Load all categories for locations (without sub-locations)
+          puts " -- " + sub_category
+        end        
+      end      
+    end    
   end
   
 end

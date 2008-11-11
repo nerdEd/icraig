@@ -12,4 +12,9 @@ class PrimaryCategory < Category
       category = existing_categories.first
     end
   end
+  
+  def to_s
+    "<PrimaryCategory name => #{name}, code => #{code}>"
+  end
+  
 end

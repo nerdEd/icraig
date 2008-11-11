@@ -11,4 +11,9 @@ class SubCategory < Category
       sub_category = existing_sub_categories.first
     end
   end
+  
+  def to_s
+      "<SubCategory name => #{name}, code => #{code}>"
+  end
+  
 end
