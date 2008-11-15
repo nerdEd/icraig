@@ -12,8 +12,4 @@ class SubCategory < Category
     end
   end
   
-  def to_s
-      "<SubCategory name => #{name}, code => #{code}>"
-  end
-  
 end

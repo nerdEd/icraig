@@ -13,8 +13,4 @@ class PrimaryCategory < Category
     end
   end
   
-  def to_s
-    "<PrimaryCategory name => #{name}, code => #{code}>"
-  end
-  
 end
