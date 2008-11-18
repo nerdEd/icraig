@@ -1,8 +1,29 @@
 require 'test_helper'
+require 'rubygems'
+require 'hpricot'
 
 class PrimaryLocationTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  
+  def test_create_from_anchor
+    doc = open( File.dirname(__FILE__) + '/../fixtures/craigslist_home.html' ) { |f| Hpricot(f) }
+    anchor_elements = PrimaryLocation.location_anchors_from_doc( doc )
+    first_anchor = anchor_elements.first
+    primary_location = PrimaryLocation.create_from_anchor( first_anchor )
+    assert_not_nil( primary_location )
+    assert_instance_of( PrimaryLocation, primary_location )
+    assert_equal( first_anchor.attributes[ 'href' ], primary_location.url )
+    assert_equal( first_anchor.inner_html, primary_location.name )
   end
+  
+  def test_location_anchors_from_doc
+    doc = open( File.dirname(__FILE__) + '/../fixtures/craigslist_home.html' ) { |f| Hpricot(f) }
+    location_anchors = PrimaryLocation.location_anchors_from_doc( doc )
+    assert_not_nil( location_anchors )
+    assert_equal( 113, location_anchors.size )
+    first_anchor_returned = location_anchors.first
+    location_anchors.each do | anchor |
+      assert_equal( true, anchor.attributes[ 'href' ].include?( 'http://geo.craigslist.org' ) )
+    end
+  end
+  
 end

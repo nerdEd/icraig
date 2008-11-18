@@ -7,20 +7,14 @@ namespace :icraig do
   desc 'scrape all Locations and Sub-Locations from Craigslist, and load them into the database'
   task :scrape_locations => :environment do
     location_doc = Hpricot( open( "http://www.craigslist.org" ) )
-    ( location_doc/"a" ).each do | anchor |
-      href = anchor.attributes[ 'href' ]
-      anchor_contents = anchor.inner_html
-      if( href.include?( 'http://geo.craigslist.org' ) and !anchor_contents.include?( 'more' ) ) then      
-        location = PrimaryLocation.create( :name => anchor_contents, :url => href )
-        puts location.name
-        sub_loc_doc = Hpricot( open( href ) )
-        ( sub_loc_doc/"#list/a" ).each do | sub_anchor |          
-          location.is_childless = false
-          location.save
-          name = sub_anchor.inner_html.sub( /(<b>)/i, '' ).sub( /(<\/b>)/i, '' )
-          sub_location = location.sub_locations.create( :name => name, :url => sub_anchor.attributes[ 'href' ] )
-          puts " -- " + sub_location.name
-        end
+    # retrieve list of all location anchors.
+    PrimaryLocation.location_anchors_from_doc( location_doc ).each do | anchor |
+      location = PrimaryLocation.create_from_anchor( anchor )
+      puts location.name
+      SubLocation.location_anchors_from_doc( Hpricot( open( location.url ) ) ).each do | sub_anchor |
+        location.is_childless = false
+        location.sub_locations << SubLocation.create_from_anchor( sub_anchor )
+        puts " -- " + sub_location.name
       end
     end
   end
