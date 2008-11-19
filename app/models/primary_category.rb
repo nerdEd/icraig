@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'hpricot'
+
 class PrimaryCategory < Category
   has_and_belongs_to_many :locations
   has_and_belongs_to_many :sub_categories
@@ -9,8 +12,16 @@ class PrimaryCategory < Category
       category.save  
       return category        
     else
-      category = existing_categories.first
+      return existing_categories.first
     end
+  end
+  
+  def self.category_anchors_from_doc( doc )
+    return ( doc/"table[@summary='main'] div.ban a[@href != '/forums/']" )
+  end
+  
+  def self.create_from_anchor( anchor_element )
+    PrimaryCategory.create_or_retrieve( anchor_element.inner_html, anchor_element.attributes[ 'href' ] )     
   end
   
 end

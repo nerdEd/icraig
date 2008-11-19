@@ -26,12 +26,11 @@ namespace :icraig do
     locations.each do | location |          
       puts 'Currently Scraping: ' + location.name      
       doc = Hpricot( open( location.url ) )
-      ( doc/"table[@summary='main'] div.ban a[@href != '/forums/']" ).each do | category_anchor |
-        category = PrimaryCategory.create_or_retrieve( category_anchor.inner_html, category_anchor.attributes[ 'href' ] )     
+      # retrieve list of all category anchors
+      PrimaryCategory.category_anchors_from_doc( doc ).each do | category_anchor |
+        category = PrimaryCategory.create_from_anchor( category_anchor )
         location.primary_categories << category
         puts category.name
-        
-        # Process sub-categories
         ( doc/"table.w2[@summary='#{category.name}'] a").each do | sub_cat_anchor |
           sub_category = SubCategory.create_or_retrieve( sub_cat_anchor.inner_html, sub_cat_anchor.attributes[ 'href' ] )
           # TODO: fix this bug, if we're working with an existing category this sub category might already be added
