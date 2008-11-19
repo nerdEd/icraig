@@ -13,7 +13,8 @@ namespace :icraig do
       puts location.name
       SubLocation.location_anchors_from_doc( Hpricot( open( location.url ) ) ).each do | sub_anchor |
         location.is_childless = false
-        location.sub_locations << SubLocation.create_from_anchor( sub_anchor )
+        sub_location = SubLocation.create_from_anchor( sub_anchor )
+        location.sub_locations << sub_location
         puts " -- " + sub_location.name
       end
     end

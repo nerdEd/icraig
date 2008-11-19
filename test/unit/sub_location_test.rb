@@ -11,6 +11,7 @@ class SubLocationTest < ActiveSupport::TestCase
     assert_instance_of( SubLocation, sub_location )
     assert_equal( first_anchor.attributes[ 'href' ], sub_location.url )
     assert_equal( first_anchor.inner_html, sub_location.name )
+    # TODO: need to add assertion to prove that all '<b>' and '</b>' are removed from the sub location name
   end
   
   def test_location_anchors_from_doc( doc )

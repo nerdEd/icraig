@@ -2,7 +2,7 @@ class SubLocation < Location
   belongs_to :primary_location
   
   def self.create_from_anchor( anchor_element )
-    name = anchor_element.inner_html.sub( /<b>|<\/b>/i, '' )
+    name = anchor_element.inner_html.gsub( /<b>|<\/b>/i, '' )
     url = anchor_element.attributes[ 'href' ]
     return SubLocation.create( :name => name, :url => url )
   end
