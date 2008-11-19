@@ -34,6 +34,7 @@ namespace :icraig do
         # Process sub-categories
         ( doc/"table.w2[@summary='#{category.name}'] a").each do | sub_cat_anchor |
           sub_category = SubCategory.create_or_retrieve( sub_cat_anchor.inner_html, sub_cat_anchor.attributes[ 'href' ] )
+          # TODO: fix this bug, if we're working with an existing category this sub category might already be added
           category.sub_categories << sub_category
           puts " -- " + sub_category.name
         end        
