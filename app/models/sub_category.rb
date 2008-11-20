@@ -12,4 +12,12 @@ class SubCategory < Category
     end
   end
   
+  def self.category_anchors_from_doc( doc, category_name )
+    return  ( doc/"table.w2[@summary='#{category_name}'] a")
+  end
+  
+  def self.create_from_anchor( anchor_element )
+    SubCategory.create_or_retrieve( anchor_element.inner_html, anchor_element.attributes[ 'href' ] )     
+  end
+  
 end
