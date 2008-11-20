@@ -20,10 +20,10 @@ class SearchController < ApplicationController
     search_titles = params[ :search ][ :only_search_titles ]
     has_image = params[ :search ][ :has_image ]
     query = { :query => search_terms }
-    if( search_titles ) then
+    if( search_titles == 1 ) then
       query[ :srchType ] = 'T'
     end
-    if( has_image ) then
+    if( has_image == 1 ) then
       query[ :hasPic ] = 1
     end
     url = url + "?" + query.to_query
