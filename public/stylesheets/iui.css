@@ -17,7 +17,7 @@ body > *:not(.toolbar) {
     left: 0;
     top: 45px;
     width: 100%;
-    min-height: 372px;
+	height: 100%;
 }
 
 body[orient="landscape"] > *:not(.toolbar) {
@@ -237,7 +237,7 @@ input[ type='submit' ] {
     font-weight: normal;
 }
 input[ type='submit' ] {
-   width: 100%;
+   width: 99%;
 }
 
 /************************************************************************************************/
