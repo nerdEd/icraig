@@ -3,7 +3,7 @@ class PrimaryLocationController < ApplicationController
   def index
     @page_title = "Select Location"
     
-    @locations = PrimaryLocation.find :all
+    @locations = PrimaryLocation.find( :all, :order => 'name' )
   end
   
   def select    

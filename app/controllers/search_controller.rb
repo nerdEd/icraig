@@ -15,7 +15,9 @@ class SearchController < ApplicationController
       url = sub_location.url
     end
     url = url + 'search/'
-    url = url + sub_category.code
+    if( sub_category != nil )
+      url = url + sub_category.code
+    end
     search_terms = params[ :search ][ :terms ]
     search_titles = params[ :search ][ :only_search_titles ]
     has_image = params[ :search ][ :has_image ]

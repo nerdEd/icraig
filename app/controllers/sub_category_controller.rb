@@ -3,7 +3,10 @@ class SubCategoryController < ApplicationController
   def index
     @page_title = "Select Sub-Category"    
     if( session[ :category ] != nil )
-      @sub_categories = session[ :category ].sub_categories    
+      @sub_categories = session[ :category ].sub_categories( :order => 'name' )
+      if( @sub_categories.empty? )
+        redirect_to :controller => 'search', :action => 'index'
+      end
     else
       redirect_to :controller => 'primary_category', :action => 'index'
     end

@@ -6,9 +6,9 @@ class PrimaryCategoryController < ApplicationController
     if( session[ :sub_location ] == nil && session[ :location ] == nil )
       redirect_to :controller => 'primary_location', :action => 'index'
     elsif( session[ :sub_location ] == nil ) then
-      @categories = session[ :location ].primary_categories
+      @categories = session[ :location ].primary_categories( :order => 'name' )
     else
-      @categories = session[ :sub_location ].primary_categories
+      @categories = session[ :sub_location ].primary_categories( :order => 'name' )
     end
   end
   

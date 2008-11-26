@@ -4,7 +4,7 @@ class SubLocationController < ApplicationController
     @page_title = "Select Sub-Location"
     
     if session[ :location ] != nil
-      @sub_locations = session[ :location ].sub_locations
+      @sub_locations = session[ :location ].sub_locations( :order => 'name' )
      
       if( @sub_locations.empty? ) then
         redirect_to :controller => 'primary_category', :action => 'index'
