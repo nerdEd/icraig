@@ -177,6 +177,19 @@ body > ul > li > a {
     background: url(../images/listArrow.png) no-repeat right center;
 }
 
+body > ul > li.skip_link_list > a {
+	padding: 8px 26px 8px 2px;
+	display: inline;
+}
+
+body > ul > li.skip_link_list > a:first-child {
+	margin-left: 6px;
+}
+
+body > ul > li.skip_link_list {
+	text-align: center;
+}
+
 a[target="_replace"] {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;

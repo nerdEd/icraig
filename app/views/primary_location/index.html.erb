@@ -1,5 +1,12 @@
 <ul title="Select Location" selected="true">
+	<li class="skip_link_list">
+		<a href="#a">A-E</a>
+		<a href="#f">F-J</a>
+		<a href="#k">K-O</a>
+		<a href="#p">P-T</a>
+		<a href="#u">U-Z</a>		
+	</li>
 	<% @locations.each do | location | %>
-	<li><%= link_to location.name, :action => 'select', :location_id => location.id %></li>
+	<li><%= link_to location.name, {:action => 'select', :location_id => location.id}, { :id => location.name.downcase[0,1] } %></li>
 	<% end %>
 </ul>
