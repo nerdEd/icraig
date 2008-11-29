@@ -5,7 +5,7 @@ class PrimaryLocation < Location
   has_many :sub_locations
   
   def self.create_from_anchor( anchor_element )
-    return PrimaryLocation.create( :name => anchor_element.inner_html, :url => anchor_element.attributes[ 'href' ] )
+    return PrimaryLocation.create( :name => anchor_element.inner_html.downcase, :url => anchor_element.attributes[ 'href' ] )
   end
   
   def self.location_anchors_from_doc( doc )

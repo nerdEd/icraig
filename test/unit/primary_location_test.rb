@@ -7,12 +7,13 @@ class PrimaryLocationTest < ActiveSupport::TestCase
   def test_create_from_anchor
     doc = open( File.dirname(__FILE__) + '/../fixtures/craigslist_home.html' ) { |f| Hpricot(f) }
     anchor_elements = PrimaryLocation.location_anchors_from_doc( doc )
-    first_anchor = anchor_elements.first
-    primary_location = PrimaryLocation.create_from_anchor( first_anchor )
-    assert_not_nil( primary_location )
-    assert_instance_of( PrimaryLocation, primary_location )
-    assert_equal( first_anchor.attributes[ 'href' ], primary_location.url )
-    assert_equal( first_anchor.inner_html, primary_location.name )
+    anchor_elements.each do | anchor |
+      primary_location = PrimaryLocation.create_from_anchor( anchor )
+      assert_not_nil( anchor )
+      assert_instance_of( PrimaryLocation, primary_location )
+      assert_equal( anchor.attributes[ 'href' ], primary_location.url )
+      assert_equal( anchor.inner_html.downcase, primary_location.name )
+    end
   end
   
   def test_location_anchors_from_doc
