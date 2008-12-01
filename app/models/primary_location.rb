@@ -4,16 +4,14 @@ require 'hpricot'
 class PrimaryLocation < Location
   has_many :sub_locations
   
-  def self.create_from_anchor( anchor_element )
+  def PrimaryLocation.create_from_anchor( anchor_element )
     return PrimaryLocation.create( :name => anchor_element.inner_html.downcase, :url => anchor_element.attributes[ 'href' ] )
   end
   
-  def self.location_anchors_from_doc( doc )
+  def PrimaryLocation.location_anchors_from_doc( doc )
     location_anchors = Array.new
-    ( doc/"a" ).each do | anchor |
-      href = anchor.attributes[ 'href' ]
-      anchor_contents = anchor.inner_html
-      if( href.include?( 'http://geo.craigslist.org' ) and !anchor_contents.include?( 'more' ) ) then      
+    doc.search( 'a[ @href*="http://geo.craigslist.org" ]' ) do | anchor |
+      if( !anchor.inner_html.include?( 'more' ) )
         location_anchors << anchor
       end
     end
