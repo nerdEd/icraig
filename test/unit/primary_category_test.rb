@@ -21,11 +21,14 @@ class PrimaryCategoryTest < ActiveSupport::TestCase
     doc = open( File.dirname(__FILE__) + '/../fixtures/craigslist_sub_location.html' ) { |f| Hpricot(f) }
     anchor_elements = PrimaryCategory.category_anchors_from_doc( doc )
     first_anchor = anchor_elements.first
-    primary_category = PrimaryCategory.create_from_anchor( first_anchor )
-    assert_not_nil( primary_category )
-    assert_instance_of( PrimaryCategory, primary_category )
-    assert_equal( first_anchor.attributes[ 'href' ], primary_category.code )
-    assert_equal( first_anchor.inner_html, primary_category.name )
+    anchor_elements.each do | anchor |
+      primary_category = PrimaryCategory.create_from_anchor( anchor )
+      assert_not_nil( primary_category )
+      assert_instance_of( PrimaryCategory, primary_category )
+      assert_equal( anchor.attributes[ 'href' ], primary_category.code )
+      assert_equal( anchor.inner_html, primary_category.name )
+    end
+    assert_equal( 7, PrimaryCategory.find( :all ).size )
   end
   
 end
