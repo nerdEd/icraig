@@ -27,13 +27,13 @@ namespace :icraig do
     locations.each do | location |          
       puts 'Currently Scraping: ' + location.name      
       doc = Hpricot( open( location.url ) )
-
+      
       PrimaryCategory.category_anchors_from_doc( doc ).each do | category_anchor |
         category = PrimaryCategory.create_from_anchor( category_anchor )
         location.primary_categories << category
         puts category.name
         
-       SubCategory.category_anchors_from_doc( doc, category.name ).each do | sub_cat_anchor |
+        SubCategory.category_anchors_from_doc( doc, category.name ).each do | sub_cat_anchor |
           sub_category = SubCategory.create_from_anchor( sub_cat_anchor )
           unless category.sub_categories.include? sub_category 
             category.sub_categories << sub_category
