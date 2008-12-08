@@ -8,13 +8,10 @@ class PrimaryCategory < Category
   @@anchor_selector = "table[@summary='main'] div.ban a[@href != '/forums/']"
   
   def PrimaryCategory.create_or_retrieve( name, code )
-    existing_categories = PrimaryCategory.find( :all, :conditions => [ "code = ?", code ] )
-    if( existing_categories.empty? ) then
-      category = PrimaryCategory.new( :name => name, :code => code )
-      category.save  
-      return category        
-    else
-      return existing_categories.first
+    begin
+      PrimaryCategory.create( :name => name, :code => code )      
+    rescue
+      return PrimaryCategory.find( :all, :conditions => [ "code = ?", code ] ).first
     end
   end
   
