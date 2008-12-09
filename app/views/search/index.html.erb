@@ -1,9 +1,11 @@
 <% form_tag( {:action => 'search'}, { :selected => 'true', :class => 'panel' } ) do %>	
 	<fieldset>
+		<p class="trail">
+			<%= @trail %>
+		</p>
 		<p style="text-align:center;">
 			<%= text_field :search, :terms %>
-		<p/>
-		
+		</p>
 		<p style="text-align:center;">
 			<%= check_box :search, :only_search_titles %>
 			<label>Only Search Titles</label>

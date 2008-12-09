@@ -2,6 +2,7 @@ class SearchController < ApplicationController
 
   def index
     @page_title='Enter Search'
+    @trail = generate_trail
   end
   
   def search
@@ -31,4 +32,18 @@ class SearchController < ApplicationController
     url = url + "?" + query.to_query
     redirect_to url    
   end
+  
+  private
+    
+    def generate_trail
+      trail = session[ :location ].name + " --> "
+      if( session[ :sub_location ] != nil ) then
+        trail += session[ :sub_location ].name + " --> "
+      end
+      trail += session[ :category ].name
+      if( session[ :sub_category ] != nil ) then
+        trail += " --> " + session[ :sub_category ].name
+      end   
+      return trail   
+    end
 end

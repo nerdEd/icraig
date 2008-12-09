@@ -14,7 +14,7 @@ class PrimaryLocationTest < ActiveSupport::TestCase
       assert_equal( anchor.attributes[ 'href' ], primary_location.url )
       assert_equal( anchor.inner_html.downcase, primary_location.name )
     end
-    assert_equal( 112, PrimaryLocation.find( :all ).size )
+    assert_equal( 111, PrimaryLocation.find( :all ).size )
   end
   
   def test_location_anchors_from_doc

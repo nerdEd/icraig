@@ -3,6 +3,7 @@ NormalPrimaryLocation:
   name: pennsylvania
   type: PrimaryLocation
   is_childless: f
+  url: http://geo.craigslist.org/iso/us/al
     
 ChildlessPrimaryLocation:
   id: 2
@@ -20,6 +21,7 @@ NormalSubLocation:
   name: hawley
   type: SubLocation
   primary_location_id: 1
+  url: http://auburn.craigslist.org/
   
 CategorylessSubLocation:
   id: 5

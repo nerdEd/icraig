@@ -387,3 +387,10 @@ fieldset > .row:last-child, {
     background-image: url(../images/loading.gif), url(../images/selection.png),
         url(../images/blueButton.png), url(../images/listArrowSel.png), url(../images/listGroup.png);
 }
+
+/************************************************************************************************/
+
+p.trail {
+	text-align: center;
+	font-size: .7em;
+}
