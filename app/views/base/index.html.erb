@@ -1,9 +1,17 @@
 <% form_tag( { :controller => 'primary_location', :action => 'index'}, { :selected => 'true', :class => 'panel' } ) do %>	
-	<%= submit_tag 'Start New Search'%>	
+	<br/>
+	<%= submit_tag 'Start New Search'%>		
+	<br/><br/>
 	<p>
-		Disclaimer: this site is in no way affiliated with Craigslist.org.
-	</p>	
-	<p>
-		If you find any bugs please report them <a href="http://nerded.lighthouseapp.com/projects/17415-icraig/overview">here</a>
+		iCraig helps you search craigslist from your iPhone, click the start button to start building your craiglist search.
 	</p>
+	<br/>
+	<p class="links">
+		<a href="http://nerded.lighthouseapp.com/projects/17415-icraig/overview">bugs</a>
+		--
+		<a href="http://www.nerdEd.net">blog</a>
+	</p>
+	<p class="disclaimer">
+		Disclaimer: this site is in no way affiliated with <a href="http://www.craigslist.org">Craigslist</a>
+	</p>	
 <% end -%>

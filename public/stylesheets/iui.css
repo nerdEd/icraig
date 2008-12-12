@@ -394,3 +394,13 @@ p.trail {
 	text-align: center;
 	font-size: .7em;
 }
+p.links {
+	text-align: center;
+	vertical-align: bottom;	
+}
+p.disclaimer {
+	font-size: .8em;
+	position: fixed;
+	bottom: 2px;
+	text-align: center;
+}

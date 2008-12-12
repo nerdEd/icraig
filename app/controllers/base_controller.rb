@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
   
   def index
-    @page_title = "iCraig Home"
+    @page_title = "iCraig"
     session[ :location ] = nil
     session[ :sub_location ] = nil
     session[ :category ] = nil 
