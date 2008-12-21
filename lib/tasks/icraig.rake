@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'hpricot'
 require 'open-uri'
+require 'net/http'
 
 namespace :icraig do
   
@@ -11,8 +12,12 @@ namespace :icraig do
     PrimaryLocation.location_anchors_from_doc( location_doc ).each do | anchor |
       location = PrimaryLocation.create_from_anchor( anchor )
       puts location.name
-    
-      SubLocation.location_anchors_from_doc( Hpricot( open( location.url ) ) ).each do | sub_anchor |
+      
+      sub_location_file = open( location.url )
+      if( !location.url.include?( sub_location_file.base_uri.host ) ) then
+        # update the location url to what the original one was redirected to
+      end
+      SubLocation.location_anchors_from_doc( Hpricot( sub_location_file ) ).each do | sub_anchor |
         location.is_childless = false
         sub_location = SubLocation.create_from_anchor( sub_anchor )
         location.sub_locations << sub_location
@@ -42,6 +47,20 @@ namespace :icraig do
         end        
       end      
     end    
+  end
+  
+  desc 'fix PrimaryLocation URLS in the database'
+  task :fix_primary_location_urls => :environment do
+    PrimaryLocation.find( :all ).each do | location |
+      response = Net::HTTP.get_response(URI.parse(location.url))
+      case response
+        when Net::HTTPRedirection then 
+          new_url = response[ 'location' ]
+          puts location.url + " --> " + new_url
+          location.url = new_url + "/"
+          location.save
+      end
+    end
   end
 
 end
