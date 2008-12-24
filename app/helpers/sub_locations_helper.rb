@@ -1,0 +1,2 @@
+module SubLocationsHelper
+end

@@ -1,0 +1,13 @@
+<% if !@primary_category.sub_categories.empty? then %>
+	<ul selected="true">	
+		<% @primary_category.sub_categories.each do | sub_category | %>
+			<% if params[ :sub_location_id ] != nil then%>
+				<li><%= link_to sub_category.name, primary_location_sub_location_primary_category_sub_category_url( @primary_location, @sub_location, @primary_category, sub_category ) %></li>
+			<% else %>
+				<li><%= link_to sub_category.name, primary_location_primary_category_sub_category_url( @primary_location, @primary_category, sub_category ) %></li>
+			<% end %>
+		<% end %>	
+	</ul>
+<% else %>	
+	<%= render_partial 'global_partials/search' %>
+<% end %>

@@ -1,7 +1,8 @@
-<% form_tag( { :controller => 'primary_location', :action => 'index'}, { :selected => 'true', :class => 'panel' } ) do %>	
+<div class="panel" selected="true">
 	<br/>
-	<%= submit_tag 'Start New Search'%>		
-	<br/><br/>
+	<p style="text-align:center;">
+		<%= link_to 'Start New Search', primary_locations_url, :class=> 'whiteButton' %>		
+	</p>	
 	<p>
 		iCraig helps you search craigslist from your iPhone, click the start button to start building your craiglist search.
 	</p>
@@ -14,4 +15,4 @@
 	<p class="disclaimer">
 		Disclaimer: this site is in no way affiliated with <a href="http://www.craigslist.org">Craigslist</a>
 	</p>	
-<% end -%>
+</div>

@@ -1,0 +1,5 @@
+<ul selected="true">
+	<% @sub_location.primary_categories.each do | primary_category | %>
+		<li><%= link_to primary_category.name, primary_location_sub_location_primary_category_url( @primary_location, @sub_location, primary_category ) %></li>
+	<% end %>	
+</ul>
