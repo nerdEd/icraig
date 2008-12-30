@@ -11,7 +11,7 @@ class PrimaryCategory < Category
     begin
       PrimaryCategory.create( :name => name, :code => code )      
     rescue
-      return PrimaryCategory.find( :all, :conditions => [ "code = ?", code ] ).first
+      return PrimaryCategory.find_by_code( code )
     end
   end
   

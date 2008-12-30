@@ -5,7 +5,7 @@ class SubCategory < Category
     begin
       SubCategory.create( :name => name, :code => code )      
     rescue
-      return SubCategory.find( :all, :conditions => [ "code = ?", code ] ).first
+      return SubCategory.find_by_code( code )
     end
   end
   
