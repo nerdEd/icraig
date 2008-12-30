@@ -29,7 +29,7 @@ namespace :icraig do
 
   desc 'scrape all Categories and Sub-Categories from Craigslist, and load them into the database'
   task :scrape_categories => :environment do     
-    locations = Location.find( :all, :conditions => "is_childless = 't'" )
+    locations = Location.find_all_by_is_childless( true )    
     locations.each do | location |          
       puts 'Currently Scraping: ' + location.name      
       doc = Hpricot( open( location.url ) )
