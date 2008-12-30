@@ -15,7 +15,8 @@ namespace :icraig do
       
       sub_location_file = open( location.url )
       if( !location.url.include?( sub_location_file.base_uri.host ) ) then
-        # update the location url to what the original one was redirected to
+        response = Net::HTTP.get_response(URI.parse(location.url))
+        location.url = response[ 'location' ] + "/"
       end
       SubLocation.location_anchors_from_doc( Hpricot( sub_location_file ) ).each do | sub_anchor |
         location.is_childless = false
