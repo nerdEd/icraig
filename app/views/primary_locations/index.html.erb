@@ -1,12 +1,1 @@
-<ul title="Select Location" selected="true">
-	<li class="skip_link_list">
-		<a href="#a">A-E</a>
-		<a href="#f">F-J</a>
-		<a href="#k">K-O</a>
-		<a href="#p">P-T</a>
-		<a href="#u">U-Z</a>		
-	</li>
-	<% @locations.each do | primary_location | %>
-	<li><%= link_to primary_location.name, primary_location_path(primary_location), :id => primary_location.name.first %></li>
-	<% end %>
-</ul>
+<%= render( :partial =>'primary_locations', :object => @location) %>

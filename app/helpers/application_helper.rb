@@ -15,4 +15,10 @@ module ApplicationHelper
     end
     return trail   
   end
+
+  def link_to_remote(name, options, html_options) 
+    #this.innerHTML.replace(/[^a-z][/]/, "_")
+    (html_options||= {}).merge! :onmouseup => %[dhtmlHistory.add( this.readAttribute("ajax_url"), this.readAttribute("onclick").replace(/return false;$/, "")  )]
+    super(name, options, html_options) 
+  end
 end

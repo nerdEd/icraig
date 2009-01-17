@@ -10,7 +10,6 @@ body {
 }
 
 body > *:not(.toolbar) {
-    display: none;
     position: absolute;
     margin: 0;
     padding: 0;

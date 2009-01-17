@@ -17,5 +17,4 @@ class PrimaryLocation < Location
     end
     return location_anchors
   end
-  
 end

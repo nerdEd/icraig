@@ -1,0 +1,22 @@
+<div class="panel centeredContentPanel" selected="true" id="content">
+	<p style="text-align:center;">
+		<%= link_to_remote 'Start', 
+						   {:url => primary_locations_url, 
+						   :method => :get},						
+						   {:href => primary_locations_url,
+							:class => 'whiteButton',
+							:ajax_url => 'primary_locations'} %>
+	</p>	
+	<p>
+		iCraig helps you search craigslist from your iPhone, click the start button to start building your craiglist search.
+	</p>
+	<br/>
+	<p class="links">
+		<a href="http://nerded.lighthouseapp.com/projects/17415-icraig/overview">bugs</a>
+		--
+		<a href="http://www.nerdEd.net">blog</a>
+	</p>
+	<p class="disclaimer">
+		Disclaimer: this site is in no way affiliated with <a href="http://www.craigslist.org">Craigslist</a>
+	</p>	
+</div>

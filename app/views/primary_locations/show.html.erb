@@ -1,11 +1,1 @@
-<ul selected="true">
-	<% if !@location.sub_locations.empty? then %>
-		<% @location.sub_locations.each do | sub_location | %>
-			<li><%= link_to sub_location.name, primary_location_sub_location_url( @location, sub_location ) %></li>
-		<% end %>
-	<% else %>
-		<% @location.primary_categories.each do | primary_category | %>
-			<li><%= link_to primary_category.name, primary_location_primary_category_url( @location, primary_category ) %></li>
-		<% end %>
-	<% end %>		
-</ul>
+<%= render :partial => 'primary_location', :object => @location %>

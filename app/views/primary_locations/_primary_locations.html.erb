@@ -1,0 +1,18 @@
+<ul id="content">
+	<li class="skip_link_list">
+		<a target="self" onclick="$$( 'li.location' ).invoke( 'show' );">All</a>
+		<a target="self" onclick="<%= skip_link_onclick( %w[ a b c d e f ] ) %>">A-F</a>
+		<a target="self" onclick="<%= skip_link_onclick( %w[ g h i j k l ] ) %>">G-L</a>
+		<a target="self" onclick="<%= skip_link_onclick( %w[ m n o p q r ] ) %>">M-R</a>
+		<a target="self" onclick="<%= skip_link_onclick( %w[ s t u v w x y z ] ) %>">S-Z</a>				
+	</li>
+	<% @locations.each do | primary_location | %>
+	<li class="location <%= primary_location.name.first%>">
+		<%= link_to_remote primary_location.name, 
+						   {:url => primary_location_path(primary_location), 
+						   :method => :get},						
+						   {:href => primary_location_path(primary_location),
+							:ajax_url => primary_location_path(primary_location)} %>
+	</li>
+	<% end %>
+</ul>

@@ -9,4 +9,5 @@ class PrimaryLocationsController < ApplicationController
     @location = PrimaryLocation.find( params[:id] )
     @page_title = @location.name
   end
+  
 end

@@ -1,0 +1,2 @@
+page.replace_html 'pageTitle', @page_title
+page.replace 'content', render( :partial => 'sub_location', :object => @sub_location )
