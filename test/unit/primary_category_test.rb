@@ -2,12 +2,6 @@ require 'test_helper'
 
 class PrimaryCategoryTest < ActiveSupport::TestCase
   
-  def test_create_or_retrieve
-    # A Primary Category 'Housing' 'house' has already been created by fixtures
-    PrimaryCategory.create_or_retrieve( 'Housing', 'house' )
-    assert_equal( 1, PrimaryCategory.find( :all ).size )
-  end
-  
   def test_category_anchors_from_doc
     doc = open( File.dirname(__FILE__) + '/../fixtures/craigslist_sub_location.html' ) { |f| Hpricot(f) }
     location_anchors = PrimaryCategory.category_anchors_from_doc( doc )

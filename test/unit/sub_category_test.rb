@@ -2,12 +2,6 @@ require 'test_helper'
 
 class SubCategoryTest < ActiveSupport::TestCase
   
-  def test_create_or_retrieve
-    # category 'Apartments' 'apartment' already created by fixture
-    SubCategory.create_or_retrieve( 'Apartments', 'apartment' )
-    assert_equal( 1, SubCategory.find( :all ).size )
-  end
-  
   def test_category_anchors_from_doc
     doc = open( File.dirname(__FILE__) + '/../fixtures/craigslist_sub_location.html' ) { |f| Hpricot(f) }
     category_anchors = SubCategory.category_anchors_from_doc( doc, "services" )
