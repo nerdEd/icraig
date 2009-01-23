@@ -4,6 +4,8 @@ require 'hpricot'
 class PrimaryLocation < Location
   has_many :sub_locations
   
+
+  
   def PrimaryLocation.create_from_anchor( anchor_element )
     return PrimaryLocation.create( :name => anchor_element.inner_html.downcase, :url => anchor_element.attributes[ 'href' ] )
   end
@@ -16,6 +18,14 @@ class PrimaryLocation < Location
       end
     end
     return location_anchors
+  end  
+  
+  def children
+    children = SubLocation.find_all_by_primary_location_id( id, :select => 'id, name' )
+    if( children.empty? ) then
+      children = self.primary_categories
+    end
+    return children
   end
   
 end
