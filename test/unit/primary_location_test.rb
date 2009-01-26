@@ -28,4 +28,31 @@ class PrimaryLocationTest < ActiveSupport::TestCase
     end
   end
   
+  def test_children_for_sub_locationless_location
+    alaska = PrimaryLocation.new( :name => 'alaska' )
+    alaska.primary_categories << PrimaryCategory.new( :name => 'for sale' )
+    
+    alaska_children = alaska.children
+    assert_equal( 1, alaska_children.size )
+    assert_equal( true, alaska_children.first.instance_of?( PrimaryCategory ) ) 
+  end
+  
+  def test_children_for_normal_location
+    alabama = PrimaryLocation.new( :name => 'alabama' )
+    alabama.sub_locations << SubLocation.new( :name => 'auburn' )
+    
+    alabama_children = alabama.children
+    assert_equal( 1, alabama_children.size )
+    assert_equal( true, alabama_children.first.instance_of?( SubLocation ) )
+  end
+  
+  def test_children_for_abnormal_location
+    hosed_location = PrimaryLocation.new( :name => 'hosed location' )
+    hosed_location.primary_categories << PrimaryCategory.new( :name => 'Housing' )
+    hosed_location.sub_locations << SubLocation.new( :name => 'anchorage' )
+    
+    hosed_location_children = hosed_location.children
+    assert_equal( 1, hosed_location_children.size )
+    assert_equal( true, hosed_location_children.first.instance_of?( SubLocation ) )
+  end
 end
