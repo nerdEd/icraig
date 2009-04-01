@@ -2,10 +2,10 @@ require 'Location'
 
 class CraigslistScraper
   
-  def load_locations
+  def scrape_locations
   end
   
-  def load_categories
+  def scrape_categories
   end
   
 end
