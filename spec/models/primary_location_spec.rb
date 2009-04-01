@@ -1,14 +1,21 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PrimaryLocation do
-
-  def make_location_with_no_subs
-    PrimaryLocation.create( :url => "http://www.icraig.org", :name => "Frankford" ).primary_categories << PrimaryCategory.create
+  
+  before( :each ) do
+    @primary_location = PrimaryLocation.new
   end
   
-  it "should find categories if it has no sub locations" do
-    make_location_with_no_subs
-    PrimaryLocation.find_by_id( 1 ).children.count.should > 0
+  it "should find categories as children if it has no sub locations" do
+    @primary_location.primary_categories << PrimaryCategory.new
+    @primary_location.children.first.should_not be_nil
+    @primary_location.children.first.should be_a( PrimaryCategory )
+  end
+  
+  it "should find sub locations for children if it has sub locations" do
+    @primary_location.sub_locations << SubLocation.new
+    @primary_location.children.first.should_not be_nil
+    @primary_location.children.first.should be_a( SubLocation )
   end
   
 end
