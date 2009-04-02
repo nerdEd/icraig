@@ -22,7 +22,7 @@ describe Location do
     @location.should_not be_valid
   end
   
-  it "shoudl be invalid without a name" do
+  it "should be invalid without a name" do
     @location.should_not be_valid
   end
   
