@@ -4,8 +4,8 @@ module NavigationHelpers
     
     when /the homepage/
       root_path
-    
-    # Add more page name => path mappings here
+    when /the list of primary locations/
+      primary_locations_path
     
     else
       raise "Can't find mapping from \"#{page_name}\" to a path."
