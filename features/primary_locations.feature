@@ -1,4 +1,4 @@
-Feature: List and view primary locations
+Feature:List and view primary locations
 	In order to perform a search
 	I want to view lists of primary locations and primary location details
 	
