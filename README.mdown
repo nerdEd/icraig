@@ -1,14 +1,15 @@
-Welcome to iCraig
-=================
+iCraig
+======
 
 iCraig is a rails application that facilitates easier searching of craigslist for its users.
 
 
-== Getting Started
+Setup
+=====
 
 1. Scrape the latest information from Craigslist
-``rake icraig:scrape_locations
-rake icraig:scrapge_categories``
+	``rake icraig:scrape_locations``
+	``rake icraig:scrapge_categories``
 
 2. Generate a new secret key 
-``rake secret``
+	``rake secret``
