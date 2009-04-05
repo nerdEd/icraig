@@ -9,7 +9,7 @@ Setup
 
 1. Scrape the latest information from Craigslist
 
-	`rake icraig:scrape_locations`
+	`rake icraig:scrape_locations`\n
 	`rake icraig:scrapge_categories`
 
 2. Generate a new secret key 
