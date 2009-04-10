@@ -4,6 +4,7 @@ require 'hpricot'
 class PrimaryCategory < Category
   has_and_belongs_to_many :locations
   has_and_belongs_to_many :sub_categories
+  belongs_to :search
   
   @@anchor_selector = "table[@summary='main'] div.ban a[@href != '/forums/']"
   

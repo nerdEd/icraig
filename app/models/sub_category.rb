@@ -1,5 +1,6 @@
 class SubCategory < Category
   has_and_belongs_to_many :primary_categories
+  belongs_to :search
   
   def SubCategory.category_anchors_from_doc( doc, category_name )
     return  ( doc/"table.w2[@summary='#{category_name}'] a")

@@ -3,6 +3,7 @@ require 'hpricot'
 
 class PrimaryLocation < Location
   has_many :sub_locations
+  belongs_to :search
   
   def PrimaryLocation.create_from_anchor( anchor_element )
     return PrimaryLocation.create( :name => anchor_element.inner_html.downcase, :url => anchor_element.attributes[ 'href' ] )
