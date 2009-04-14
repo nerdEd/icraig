@@ -1,7 +1,7 @@
 <ul selected="true">	
 	<% @location.children.each do | child | %>
 	<li>
-		<%= link_to child.name, primary_location_child_url( @location, child ) %>
+		<%= link_to child.name, url_for( [ @location, child ] ) %>
 	</li>
 	<% end %>
 </ul>

@@ -7,6 +7,6 @@
 		<a href="#u">U-Z</a>		
 	</li>
 	<% @locations.each do | primary_location | %>
-	<li><%= link_to primary_location.name, primary_location_path(primary_location), :id => primary_location.name.first %></li>
+	<li><%= link_to primary_location.name, url_for(primary_location), :id => primary_location.name.first %></li>
 	<% end %>
 </ul>
